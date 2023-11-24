@@ -89,6 +89,7 @@ class ReaderBase(ABC):
         ds = self._get_stream_from_source(env, source_name)
         ds = self._assign_id(ds)
         ds = self._assign_timestamp(ds)
+        ds.name(source_name)
         return ds
 
     @abstractmethod

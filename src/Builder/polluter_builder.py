@@ -61,9 +61,17 @@ class PolluterBuilderComposite(PolluterBuilderComponent):
         self._polluters: list[Union[KeyedStreamPolluter, StreamPolluter]] = []
         self._polluter_builders: list[PolluterBuilderComponent] = []
 
+    def __len__(self):
+        return len(self._polluters)
+
     def set_polluters(self, polluters: list[Union[KeyedStreamPolluter, StreamPolluter]]):
         self._polluters = polluters
         self._polluter_builders = [PolluterBuilder(polluter) for polluter in polluters]
+        return self
+
+    def add_polluters(self, polluters: list[Union[KeyedStreamPolluter, StreamPolluter]]):
+        self._polluters += polluters
+        self._polluter_builders += [PolluterBuilder(polluter) for polluter in polluters]
         return self
 
     @property
@@ -86,6 +94,8 @@ class PolluterBuilder(PolluterBuilderComponent):
         self._polluter = polluter
 
     def build(self, stream: DataStream, logger_handler: LogOutputManager = None) -> DataStream:
+        if not logger_handler:
+            self._polluter.set_output_logger(None)
         if isinstance(self._polluter, KeyedProcessFunction):
             stream = self._build_keyed_stream(stream)
         elif isinstance(self._polluter, ProcessFunction):
