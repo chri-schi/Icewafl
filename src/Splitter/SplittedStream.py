@@ -4,7 +4,7 @@ from pyflink.datastream import DataStream
 from src.Builder.polluter_builder import PolluterBuilderComposite, LogOutputManager
 from src.Polluters.TabularPolluters.KeyedStreamPolluters.keyed_stream_polluter import KeyedStreamPolluter
 from src.Polluters.TabularPolluters.StreamPolluters.stream_polluter import StreamPolluter
-from src.Splitter.StreamCopySplitter import StreamCopySplitter
+from src.Splitter.Splitter import Splitter
 
 
 class SplittedStream:
@@ -66,7 +66,7 @@ class SplittedStream:
         return ds.union(*streams)
 
     @staticmethod
-    def split_stream(splitter: StreamCopySplitter, ds: DataStream, id_attribute_name: str) -> 'SplittedStream':
+    def split_stream(splitter: Splitter, ds: DataStream, id_attribute_name: str) -> 'SplittedStream':
         output_tags = splitter.stream_tags
         output_tag_names = splitter.stream_tag_names
         ds = ds.process(splitter)
