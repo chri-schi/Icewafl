@@ -1,10 +1,10 @@
-# Eiswafl
+# Icewafl 
 
-The purpose of Eiswafl ( **E**rror **I**njection **S**olution **w**ith **A**pache **Fl**ink) is to create data quality (DQ) benchmarks from streaming or
-batch data. Thereby, Eiswafl pollutes provided seed data with different error patterns. This pollution process is highly
+The purpose of Icewafl (**I**nserting **C**ustomizable **E**rrors **w**ith **A**pache **F**link) is to create data quality (DQ) benchmarks from streaming or
+batch data. Thereby, Icewafl pollutes provided seed data with different error patterns. This pollution process is highly
 configurable and allows to generate benchmark data with different error types and error rates. In addition, it is
 possible to adjust the behaviour of the pollution process depending on attribute values in the data, event time or
-even a random variable. With its highly configurable pollution process, Eiswafl is designed to
+even a random variable. With its highly configurable pollution process, Icewafl is designed to
 generate benchmarks for a wide range of real-world scenarios.
 
 ## Prerequisites (Windows 10)
